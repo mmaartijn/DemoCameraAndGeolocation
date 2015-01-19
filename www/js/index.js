@@ -27,7 +27,7 @@ function getPicture(source){
         correctOrientation : true
     };
 
-    if(source){
+    if(source !== undefined){
         cameraOptions.sourceType = source;
     }
 
