@@ -56,6 +56,6 @@ function btnGetGeolocationClicked(){
           'Timestamp: '         + position.timestamp
         );
     }, function(err){
-      alert("Fout bij geolocation ophalen.", err.message);
+      alert(err.message);
     }, geolocationOptions);
 }
