@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    document.addEventListener('deviceready', onDeviceReady, false);
+  document.addEventListener('deviceready', onDeviceReady, false);
     $("#btnTakePicture").click(btnTakePictureClicked);
     $("#btnOpenPicture").click(btnOpenPictureClicked);
 
@@ -40,7 +40,8 @@ function getPicture(source){
 
 function btnGetGeolocationClicked(){
     var geolocationOptions = {
-        maximumAge : 10000
+        maximumAge : 10000,
+        timeout: 2500
     };
 
     navigator.geolocation.getCurrentPosition(function(position){
@@ -55,6 +56,6 @@ function btnGetGeolocationClicked(){
           'Timestamp: '         + position.timestamp
         );
     }, function(err){
-        alert(err);
+      alert("Fout bij geolocation ophalen.", err.message);
     }, geolocationOptions);
 }
