@@ -4,6 +4,9 @@ $(document).ready(function(){
     $("#btnOpenPicture").click(btnOpenPictureClicked);
 
     $('#btnGetGeolocation').click(btnGetGeolocationClicked);
+
+
+    $('body').load('second.html');
 });
 
 function onDeviceReady(){
@@ -41,7 +44,8 @@ function getPicture(source){
 function btnGetGeolocationClicked(){
     var geolocationOptions = {
         maximumAge : 10000,
-        timeout: 2500
+        timeout: 2500,
+        enableHighAccuracy: true
     };
 
     navigator.geolocation.getCurrentPosition(function(position){
