@@ -8,9 +8,6 @@ $(document).ready(function(){
     $("#btnOpenPicture").click(btnOpenPictureClicked);
 
     $('#btnGetGeolocation').click(btnGetGeolocationClicked);
-
-
-    $('body').load('second.html');
 });
 
 function onPause(){
