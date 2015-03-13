@@ -1,4 +1,5 @@
-var currentLocation = {};
+var interval = null;
+var currentCount = 0;
 
 $(document).ready(function(){
   document.addEventListener('deviceready', onDeviceReady, false);
@@ -8,30 +9,19 @@ $(document).ready(function(){
     $("#btnOpenPicture").click(btnOpenPictureClicked);
 
     $('#btnGetGeolocation').click(btnGetGeolocationClicked);
+    $('#btnStartTeller').click(btnStartTellerClicked);
 });
 
 function onPause(){
-  alert('onPause');
-  if(currentLocation){
-    window.localStorage.currentLocation = currentLocation;
+  if(interval){
+    clearInterval(interval);
+    interval = null;
   }
 }
 
 function onResume(){
-  alert('onResume');
-  if(!currentLocation && window.localStorage.currentLocation){
-    var position = currentLocation = window.localStorage.currentLocation;
-    $("#geolocationContainer").html(
-      'Your last known location was <br /><br />' +
-      'Latitude: '          + position.coords.latitude          + '<br />' +
-      'Longitude: '         + position.coords.longitude         + '<br />' +
-      'Altitude: '          + position.coords.altitude          + '<br />' +
-      'Accuracy: '          + position.coords.accuracy          + '<br />' +
-      'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '<br />' +
-      'Heading: '           + position.coords.heading           + '<br />' +
-      'Speed: '             + position.coords.speed             + '<br />' +
-      'Timestamp: '         + position.timestamp
-    );
+  if(!interval){
+    interval = setInterval(updateTellerUi, 1000);
   }
 }
 
@@ -39,6 +29,15 @@ function onDeviceReady(){
     $("#btnTakePicture").prop("disabled", false);
     $("#btnOpenPicture").prop("disabled", false);
     $("#btnGetGeolocation").prop("disabled", false);
+    $("#btnStartTeller").prop("disabled", false);
+}
+
+function btnStartTellerClicked(){
+   interval = setInterval(updateTellerUi, 1000);
+}
+
+function updateTellerUi(){ 
+  $('#teller').text(++currentCount); 
 }
 
 function btnTakePictureClicked(){
