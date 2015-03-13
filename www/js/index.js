@@ -25,7 +25,7 @@ function onResume(){
   if(!currentLocation && window.localStorage.currentLocation){
     var position = currentLocation = window.localStorage.currentLocation;
     $("#geolocationContainer").html(
-      'You''r last known location was <br /><br />' +
+      'Your last known location was <br /><br />' +
       'Latitude: '          + position.coords.latitude          + '<br />' +
       'Longitude: '         + position.coords.longitude         + '<br />' +
       'Altitude: '          + position.coords.altitude          + '<br />' +
